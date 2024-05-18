@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>リンク画像ボタンとオーディオプレーヤー</title>
     <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
         .grid-item {
             text-align: center;
-            margin-bottom: 20px; /* オーディオプレーヤーの下の余白 */
         }
         .link-button img {
             width: 200px;
@@ -17,48 +21,63 @@
 </head>
 <body>
     <!-- 1行目 -->
-    <div class="grid-item">
-        <a href="https://www.openai.com">
-            <img src="https://www.openai.com/images/logos/openai-logo.png" alt="OpenAI Logo">
-        </a>
+    <div class="grid-container">
+        <div class="grid-item">
+            <a href="https://www.openai.com">
+                <img src="https://www.openai.com/images/logos/openai-logo.png" alt="OpenAI Logo">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://example.com">
+                <img src="https://example.com/images/button.png" alt="Button">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://www.example.com">
+                <img src="https://example.com/images/button.png" alt="Button">
+            </a>
+        </div>
     </div>
 
     <!-- 2行目 -->
-    <div class="grid-item">
-        <a href="https://example.com">
-            <img src="https://example.com/images/button.png" alt="Button">
-        </a>
+    <div class="grid-container">
+        <div class="grid-item">
+            <a href="https://www.example.com">
+                <img src="https://example.com/images/button.png" alt="Button">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://example.com">
+                <img src="https://example.com/images/button.png" alt="Button">
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="https://www.example.com">
+                <img src="https://example.com/images/button.png" alt="Button">
+            </a>
+        </div>
     </div>
 
     <!-- 3行目 -->
-    <div class="grid-item">
-        <a href="https://www.example.com">
-            <img src="https://example.com/images/button.png" alt="Button">
-        </a>
-    </div>
-
-    <!-- 1行目のオーディオプレーヤー -->
-    <div class="grid-item">
-        <audio controls>
-            <source src="https://example.com/audio/sample1.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
-
-    <!-- 2行目のオーディオプレーヤー -->
-    <div class="grid-item">
-        <audio controls>
-            <source src="https://example.com/audio/sample2.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
-
-    <!-- 3行目のオーディオプレーヤー -->
-    <div class="grid-item">
-        <audio controls>
-            <source src="https://example.com/audio/sample3.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <div class="grid-container">
+        <div class="grid-item">
+            <audio controls>
+                <source src="https://example.com/audio/sample1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div class="grid-item">
+            <audio controls>
+                <source src="https://example.com/audio/sample2.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div class="grid-item">
+            <audio controls>
+                <source src="https://example.com/audio/sample3.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
     </div>
 </body>
 </html>
