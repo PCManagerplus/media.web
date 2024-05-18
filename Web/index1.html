@@ -4,35 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>リンク画像ボタンとオーディオプレーヤー</title>
+    <style>
+        .grid-item {
+            text-align: center;
+            margin-bottom: 20px; /* オーディオプレーヤーの下の余白 */
+        }
+        .link-button img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <div class="link-button">
+    <!-- 1行目 -->
+    <div class="grid-item">
         <a href="https://www.openai.com">
-            <img src="https://www.openai.com/images/logos/openai-logo.png" alt="OpenAI Logo" style="width:200px; height:auto;">
+            <img src="https://www.openai.com/images/logos/openai-logo.png" alt="OpenAI Logo">
         </a>
     </div>
 
-    <!-- リンク画像ボタンを追加 -->
-    <div class="link-button">
+    <!-- 2行目 -->
+    <div class="grid-item">
         <a href="https://example.com">
-            <img src="https://example.com/images/button.png" alt="Button" style="width:150px; height:auto;">
+            <img src="https://example.com/images/button.png" alt="Button">
         </a>
     </div>
 
-    <div class="audio-player">
+    <!-- 3行目 -->
+    <div class="grid-item">
+        <a href="https://www.example.com">
+            <img src="https://example.com/images/button.png" alt="Button">
+        </a>
+    </div>
+
+    <!-- 1行目のオーディオプレーヤー -->
+    <div class="grid-item">
         <audio controls>
             <source src="https://example.com/audio/sample1.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
     </div>
 
-    <!-- オーディオプレーヤーを追加 -->
-    <div class="audio-player">
+    <!-- 2行目のオーディオプレーヤー -->
+    <div class="grid-item">
         <audio controls>
             <source src="https://example.com/audio/sample2.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
     </div>
 
+    <!-- 3行目のオーディオプレーヤー -->
+    <div class="grid-item">
+        <audio controls>
+            <source src="https://example.com/audio/sample3.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
 </body>
 </html>
