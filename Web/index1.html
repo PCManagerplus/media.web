@@ -8,7 +8,7 @@
         // GitHub APIを使用してファイルの内容を取得する関数
         function getFileContents(username, repo, filepath) {
             // GitHub APIのURL
-            var url = `https://api.github.com/repos/${username}/${repo}/contents/${filepath}`;
+            var url = `https://api.github.com/repos/${PCManagerplus}/${media.web}/contents/${/}`;
 
             // XMLHttpRequestオブジェクトを作成
             var xhr = new XMLHttpRequest();
@@ -31,7 +31,7 @@
 
         // ページが読み込まれた後にファイルの内容を取得
         window.onload = function () {
-            getFileContents('ユーザー名', 'リポジトリ名', 'ファイルのパス');
+            getFileContents('PCManagerplus', 'media.web', '/');
         };
     </script>
 </head>
