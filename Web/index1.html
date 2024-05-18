@@ -1,42 +1,52 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHubファイルビューア</title>
-    <script>
-        // GitHub APIを使用してファイルの内容を取得する関数
-        function getFileContents(username, repo, filepath) {
-            // GitHub APIのURL
-            var url = `https://api.github.com/repos/${PCManagerplus}/${media.web}/contents/${/}`;
-
-            // XMLHttpRequestオブジェクトを作成
-            var xhr = new XMLHttpRequest();
-
-            // リクエストを開始
-            xhr.open('GET', url, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // レスポンスが成功した場合、JSONをパースしてファイルの内容を取得
-                    var response = JSON.parse(xhr.responseText);
-                    // ファイルの内容をデコード
-                    var content = atob(response.content);
-                    // HTMLに表示
-                    document.getElementById('fileContent').innerText = content;
-                }
-            };
-            // リクエストを送信
-            xhr.send();
+    <title>PCManagerplus/media.web Repository</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
-
-        // ページが読み込まれた後にファイルの内容を取得
-        window.onload = function () {
-            getFileContents('PCManagerplus', 'media.web', '/');
-        };
-    </script>
+        .folder, .file {
+            margin-left: 20px;
+        }
+        .folder {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>GitHubファイルビューア</h1>
-    <pre id="fileContent">ファイルの内容がここに表示されます。</pre>
+    <h1>PCManagerplus/media.web Repository</h1>
+    <div class="folder">Android
+        <div class="folder">Google
+            <div class="folder">Apps
+                <div class="folder">Clock
+                    <div class="folder">Sounds</div>
+                </div>
+            </div>
+        </div>
+        <div class="folder">Sony Mobile
+            <div class="folder">Sound
+                <div class="folder">Timer</div>
+            </div>
+        </div>
+    </div>
+    <div class="folder">Web</div>
+    <div class="folder">Windows11 sounds all</div>
+    <div class="file">7 Scivola (Instrumental Version).mp3</div>
+    <div class="file">82602-580137800_tiny.mp4</div>
+    <div class="file">Effect_Tick lenovo.wav</div>
+    <div class="file">Oz.ogg</div>
+    <div class="file">README.md</div>
+    <div class="file">google camera.wav</div>
+    <div class="file">happy-happiness-corporate-main-203857.mp3</div>
+    <div class="file">new-happy-corporate-long-10713.mp3</div>
+    <div class="file">title.mp3</div>
+    <div class="file">タイマー.wav</div>
+    <div class="file">プレゼンテーション1.pdf</div>
+    <div class="file">新タイマー.m4a</div>
+    <div class="file">旧タイマー.m4a</div>
 </body>
 </html>
