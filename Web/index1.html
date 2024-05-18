@@ -3,81 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>リンク画像ボタンとオーディオプレーヤー</title>
-    <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+    <title>GitHubファイルビューア</title>
+    <script>
+        // GitHub APIを使用してファイルの内容を取得する関数
+        function getFileContents(username, repo, filepath) {
+            // GitHub APIのURL
+            var url = `https://api.github.com/repos/${username}/${repo}/contents/${filepath}`;
+
+            // XMLHttpRequestオブジェクトを作成
+            var xhr = new XMLHttpRequest();
+
+            // リクエストを開始
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // レスポンスが成功した場合、JSONをパースしてファイルの内容を取得
+                    var response = JSON.parse(xhr.responseText);
+                    // ファイルの内容をデコード
+                    var content = atob(response.content);
+                    // HTMLに表示
+                    document.getElementById('fileContent').innerText = content;
+                }
+            };
+            // リクエストを送信
+            xhr.send();
         }
-        .grid-item {
-            text-align: center;
-        }
-        .link-button img {
-            width: 200px;
-            height: auto;
-        }
-    </style>
+
+        // ページが読み込まれた後にファイルの内容を取得
+        window.onload = function () {
+            getFileContents('ユーザー名', 'リポジトリ名', 'ファイルのパス');
+        };
+    </script>
 </head>
 <body>
-    <!-- 1行目 -->
-    <div class="grid-container">
-        <div class="grid-item">
-            <a href="https://www.openai.com">
-                <img src="https://www.openai.com/images/logos/openai-logo.png" alt="OpenAI Logo">
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="https://example.com">
-                <img src="https://example.com/images/button.png" alt="Button">
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="https://www.example.com">
-                <img src="https://example.com/images/button.png" alt="Button">
-            </a>
-        </div>
-    </div>
-
-    <!-- 2行目 -->
-    <div class="grid-container">
-        <div class="grid-item">
-            <a href="https://www.example.com">
-                <img src="https://example.com/images/button.png" alt="Button">
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="https://example.com">
-                <img src="https://example.com/images/button.png" alt="Button">
-            </a>
-        </div>
-        <div class="grid-item">
-            <a href="https://www.example.com">
-                <img src="https://example.com/images/button.png" alt="Button">
-            </a>
-        </div>
-    </div>
-
-    <!-- 3行目 -->
-    <div class="grid-container">
-        <div class="grid-item">
-            <audio controls>
-                <source src="https://example.com/audio/sample1.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <div class="grid-item">
-            <audio controls>
-                <source src="https://example.com/audio/sample2.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <div class="grid-item">
-            <audio controls>
-                <source src="https://example.com/audio/sample3.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-    </div>
+    <h1>GitHubファイルビューア</h1>
+    <pre id="fileContent">ファイルの内容がここに表示されます。</pre>
 </body>
 </html>
