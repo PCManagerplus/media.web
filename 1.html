@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub File Manager</title>
+    <style>
+        /* CSS スタイル */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .file-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .file-list li {
+            margin-bottom: 5px;
+        }
+        .file-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub File Manager</h1>
+    <ul class="file-list" id="fileList">
+        <!-- ファイル一覧はここに表示されます -->
+    </ul>
+
+    <script>
+        // GitHub API からファイル一覧を取得して表示する関数
+        function displayFileList() {
+            const username = 'YOUR_GITHUB_USERNAME';
+            const repo = 'pcmanagerplus';
+            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const fileListElement = document.getElementById('fileList');
+                    fileListElement.innerHTML = ''; // ファイル一覧をリセット
+
+                    data.forEach(item => {
+                        if (item.type === 'file') {
+                            const listItem = document.createElement('li');
+                            const link = document.createElement('a');
+                            link.textContent = item.name;
+                            link.href = item.html_url; // ファイルのURL
+                            link.target = '_blank'; // ファイルを新しいタブで開く
+                            link.classList.add('file-link');
+                            listItem.appendChild(link);
+                            fileListElement.appendChild(listItem);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching file list:', error));
+        }
+
+        // ページが読み込まれた時にファイル一覧を表示
+        window.onload = displayFileList;
+    </script>
+</body>
+</html>
