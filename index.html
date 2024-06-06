@@ -83,13 +83,14 @@
             <a href="https://www.google.com">Googleに戻る</a>
         </div>
     </div>
-    <audio id="alertSound" src="https://pcmanagerplus.github.io/media.web/Gerror.mp3"></audio>
+    <audio id="error-sound" src="https://pcmanagerplus.github.io/media.web/Gerror.mp3"></audio>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var audio = document.getElementById('alertSound');
-            audio.play().catch(function(error) {
-                console.log('Autoplay was prevented: ', error);
-            });
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('error-sound').play().catch(error => {
+                    console.error('自動再生エラー:', error);
+                });
+            }, 500);
         });
     </script>
 </body>
