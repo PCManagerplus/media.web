@@ -1,92 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>入力場所</title>
-  <!-- Material Design ライブラリの読み込み -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- jQuery ライブラリの読み込み -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Materialize ライブラリの読み込み -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Forbidden</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8d7da;
+            color: #721c24;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+        .error-container {
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .material-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #6200ea;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+        .material-button:hover {
+            background-color: #3700b3;
+        }
+        .material-button .material-icons {
+            margin-right: 8px;
+        }
+        audio {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-
-<div class="container">
-  <h4>入力場所</h4>
-  <div class="row">
-    <form class="col s12" id="inputForm">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="inputField" type="text" class="validate" onkeyup="showAccessButton()">
-          <label for="inputField">入力場所</label>
-        </div>
-      </div>
-      <div class="row">
-        <button id="accessButton" class="btn waves-effect waves-light" type="button" onclick="redirect()" style="display:none;">アクセス
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- モーダル構造 -->
-<div id="accessKeyModal" class="modal">
-  <div class="modal-content">
-    <h4>アクセスキーを入力してください</h4>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="accessKeyInput" type="password" class="validate">
-        <label for="accessKeyInput">アクセスキー</label>
-      </div>
+    <div class="error-container">
+        <h1>403 Forbidden</h1>
+        <p>アクセスが禁止されています。必要な権限がありません。</p>
+        <a href="https://www.google.com" class="material-button">
+            <span class="material-icons">arrow_back</span> Googleに戻る
+        </a>
+        <audio autoplay loop>
+            <source src="https://pcmanagerplus.github.io/media.web/Gerror.mp3" type="audio/mpeg">
+            お使いのブラウザはオーディオ要素をサポートしていません。
+        </audio>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button id="modalOkButton" class="modal-close btn waves-effect waves-light">OK</button>
-  </div>
-</div>
-
-<script>
-  // ページロード時にモーダルを表示
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, {dismissible: false});
-    var instance = M.Modal.getInstance(document.getElementById('accessKeyModal'));
-    instance.open();
-  });
-
-  // アクセスボタン表示制御
-  function showAccessButton() {
-    var inputField = document.getElementById("inputField");
-    var accessButton = document.getElementById("accessButton");
-    if (inputField.value.trim() !== "") {
-      accessButton.style.display = "block";
-    } else {
-      accessButton.style.display = "none";
-    }
-  }
-
-  // OKボタン押下時の処理
-  document.getElementById('modalOkButton').addEventListener('click', function() {
-    var accessKey = document.getElementById('accessKeyInput').value;
-    if (accessKey === 'media2441pc') {
-      var instance = M.Modal.getInstance(document.getElementById('accessKeyModal'));
-      instance.close();
-    } else {
-      M.toast({html: 'アクセスキーが間違っています', classes: 'rounded'});
-    }
-  });
-
-  // リダイレクト処理
-  function redirect() {
-    var inputField = document.getElementById("inputField").value;
-    var url = 'https://pcmanagerplus.github.io/media.web/' + inputField;
-    window.location.href = url;
-  }
-</script>
-
 </body>
 </html>
