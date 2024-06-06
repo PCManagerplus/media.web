@@ -3,94 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>403 アクセス拒否</title>
+    <title>403 Forbidden</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
         body {
-            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-        .container {
+            background-color: #f8d7da;
+            color: #721c24;
+            font-family: 'Roboto', sans-serif;
             text-align: center;
+            margin: 0;
+        }
+        .error-container {
             max-width: 600px;
             padding: 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            background-color: var(--container-bg);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            border-radius: 8px;
         }
         h1 {
-            font-size: 2em;
+            font-size: 3em;
             margin: 0;
-            color: var(--error-color);
         }
         p {
+            font-size: 1.2em;
             margin: 20px 0;
-            font-size: 1.2em;
         }
-        .reason {
-            font-size: 1em;
-            color: var(--reason-color);
-        }
-        .link {
-            margin-top: 20px;
-            font-size: 1.2em;
-        }
-        .link a {
-            color: var(--link-color);
+        .material-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #6200ea;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
             text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .link a:hover {
-            text-decoration: underline;
+        .material-button:hover {
+            background-color: #3700b3;
         }
-
-        /* Light theme */
-        :root {
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-            --border-color: #ddd;
-            --container-bg: #fff;
-            --error-color: #d9534f;
-            --reason-color: #555;
-            --link-color: #337ab7;
+        .material-button .material-icons {
+            margin-right: 8px;
         }
-
-        /* Dark theme */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --text-color: #eee;
-                --border-color: #444;
-                --container-bg: #1e1e1e;
-                --error-color: #ff6f61;
-                --reason-color: #bbb;
-                --link-color: #66b2ff;
-            }
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>アクセスを拒否されました。</h1>
-        <p>ーー理由ーー</p>
-        <p class="reason">編集者はこのページのアクセスを制限しています。</p>
-        <div class="link">
-            <a href="https://www.google.com">Googleに戻る</a>
-        </div>
+    <div class="error-container">
+        <h1>403 Forbidden</h1>
+        <p>アクセスが禁止されています。必要な権限がありません。</p>
+        <a href="https://www.google.com" class="material-button">
+            <span class="material-icons">arrow_back</span> Googleに戻る
+        </a>
+        <audio autoplay loop>
+            <source src="https://pcmanagerplus.github.io/media.web/Gerror.mp3" type="audio/mpeg">
+            お使いのブラウザはオーディオ要素をサポートしていません。
+        </audio>
     </div>
-    <audio id="error-sound" src="https://pcmanagerplus.github.io/media.web/Gerror.mp3" preload="auto"></audio>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var audio = document.getElementById('error-sound');
-            audio.play().catch(function(error) {
-                console.log('Autoplay was prevented:', error);
-            });
-        });
-    </script>
 </body>
 </html>
