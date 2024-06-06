@@ -28,12 +28,10 @@
             font-size: 2em;
             margin: 0;
             color: var(--error-color);
-            cursor: pointer;
         }
         p {
             margin: 20px 0;
             font-size: 1.2em;
-            cursor: pointer;
         }
         .reason {
             font-size: 1em;
@@ -78,31 +76,12 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="play-er">アクセスが拒否されました。</h1>
-        <p id="play-er">ーー理由ーー</p>
-        <p id="play-er" class="reason">編集者によりこのページへのアクセスが制限されています。</p>
+        <h1>アクセスを拒否されました。</h1>
+        <p>ーー理由ーー</p>
+        <p class="reason">編集者はこのページのアクセスを制限しています。</p>
         <div class="link">
-            <button id="play-ar">Googleに戻る</button>
+            <a href="https://www.google.com">Googleに戻る</a>
         </div>
     </div>
-    <audio id="alert-er" src="https://pcmanagerplus.github.io/media.web/er.mp3" preload="auto"></audio>
-    <audio id="alert-ar" src="https://pcmanagerplus.github.io/media.web/ar.mp3" preload="auto"></audio>
-    <script>
-        document.getElementById('play-ar').addEventListener('click', function() {
-            var audio = document.getElementById('alert-ar');
-            audio.currentTime = 0; // 再生位置を最初に戻す
-            audio.play().catch(function(error) {
-                console.error('再生に失敗しました:', error);
-            });
-        });
-
-        window.addEventListener('load', function() {
-            var audio = document.getElementById('alert-er');
-            document.getElementById('play-ar').disabled = false;
-            audio.play().catch(function(error) {
-                console.error('再生に失敗しました:', error);
-            });
-        });
-    </script>
 </body>
 </html>
