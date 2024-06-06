@@ -87,11 +87,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('error-sound');
-            audio.oncanplaythrough = function() {
-                audio.play();
-            };
+            audio.play().catch(function(error) {
+                console.log('Autoplay was prevented:', error);
+            });
         });
     </script>
 </body>
 </html>
-
