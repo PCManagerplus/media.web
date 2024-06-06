@@ -48,6 +48,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems, {dismissible: false});
+
+  // ページロード後にアクセスキーダイアログを表示
+  var accessDialog = document.getElementById("accessDialog");
+  var instance = M.Modal.getInstance(accessDialog);
+  instance.open();
 });
 
 function showAccessButton() {
@@ -63,7 +68,7 @@ function showAccessButton() {
 function checkAccessKey() {
   var accessKeyInput = document.getElementById("accessKeyInput").value;
   var encryptedAccessKey = encryptAccessKey(accessKeyInput);
-  var correctEncryptedKey = "eccbc87e4b5ce2fe28308fd9f2a7baf3"; 
+  var correctEncryptedKey = "98b5663ec6318b31e44d86c5b82c5079"; // "media2441pc" の暗号化された値
   
   if (encryptedAccessKey === correctEncryptedKey) {
     var accessDialog = document.getElementById("accessDialog");
@@ -75,11 +80,13 @@ function checkAccessKey() {
 }
 
 function encryptAccessKey(accessKey) {
-  // アクセスキーの暗号化方法を定義
-  // ここでは単純にMD5ハッシュを使っていますが、実際にはより安全な暗号化方式を使用することをお勧めします。
-  return md5(accessKey);
+  // MD5ハッシュ化関数
+  return CryptoJS.MD5(accessKey).toString();
 }
 </script>
+
+<!-- CryptoJSライブラリの読み込み -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 
 </body>
 </html>
