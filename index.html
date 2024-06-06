@@ -78,22 +78,28 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="play-sound">アクセスを拒否されました。</h1>
-        <p id="play-sound">ーー理由ーー</p>
-        <p id="play-sound" class="reason">編集者はこのページのアクセスを制限しています。</p>
+        <h1 id="play-er">アクセスが拒否されました。</h1>
+        <p id="play-er">ーー理由ーー</p>
+        <p id="play-er" class="reason">編集者によりこのページへのアクセスが制限されています。</p>
         <div class="link">
-            <a href="https://www.google.com">Googleに戻る</a>
+            <a href="javascript:void(0);" id="play-ar">音声再生</a>
         </div>
     </div>
-    <audio id="alert-sound" src="https://pcmanagerplus.github.io/media.web/ar.mp3"></audio>
+    <audio id="alert-er" src="https://pcmanagerplus.github.io/media.web/er.mp3"></audio>
+    <audio id="alert-ar" src="https://pcmanagerplus.github.io/media.web/ar.mp3"></audio>
     <script>
-        document.querySelectorAll('#play-sound').forEach(element => {
-            element.addEventListener('click', function() {
-                var audio = document.getElementById('alert-sound');
-                audio.currentTime = 0; // 再生位置を最初に戻す
-                audio.play().catch(function(error) {
-                    console.error('再生に失敗しました:', error);
-                });
+        document.getElementById('play-ar').addEventListener('click', function() {
+            var audio = document.getElementById('alert-ar');
+            audio.currentTime = 0; // 再生位置を最初に戻す
+            audio.play().catch(function(error) {
+                console.error('再生に失敗しました:', error);
+            });
+        });
+
+        window.addEventListener('load', function() {
+            var audio = document.getElementById('alert-er');
+            audio.play().catch(function(error) {
+                console.error('再生に失敗しました:', error);
             });
         });
     </script>
