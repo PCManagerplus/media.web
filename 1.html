@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>入力場所</title>
-<!-- Material Design ライブラリの読み込み -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<!-- jQuery ライブラリの読み込み -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Materialize ライブラリの読み込み -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>入力場所</title>
+  <!-- Material Design ライブラリの読み込み -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- jQuery ライブラリの読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Materialize ライブラリの読み込み -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
 
 <div class="container">
   <h4>入力場所</h4>
   <div class="row">
-    <form class="col s12" action="https://pcmanagerplus.github.io/media.web/" method="get">
+    <form class="col s12" id="inputForm">
       <div class="row">
         <div class="input-field col s12">
-          <input id="inputField" type="text" class="validate" name="inputField" onkeyup="showAccessButton()">
+          <input id="inputField" type="text" class="validate" onkeyup="showAccessButton()">
           <label for="inputField">入力場所</label>
         </div>
       </div>
       <div class="row">
-        <button id="accessButton" class="btn waves-effect waves-light" type="submit" style="display:none;">アクセス
+        <button id="accessButton" class="btn waves-effect waves-light" type="button" onclick="redirect()" style="display:none;">アクセス
           <i class="material-icons right">send</i>
         </button>
       </div>
@@ -33,60 +33,78 @@
   </div>
 </div>
 
-<!-- アクセスキーダイアログ -->
-<div id="accessDialog" class="modal">
+<!-- アクセスキー入力モーダル -->
+<div id="accessKeyModal" class="modal">
   <div class="modal-content">
     <h4>アクセスキーを入力してください</h4>
-    <input id="accessKeyInput" type="password" class="validate">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="accessKeyInput" type="password" class="validate">
+        <label for="accessKeyInput">アクセスキー</label>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="checkAccessKey()">OK</a>
+    <button id="modalOkButton" class="btn waves-effect waves-light">OK</button>
+  </div>
+</div>
+
+<!-- エラーメッセージモーダル -->
+<div id="errorModal" class="modal">
+  <div class="modal-content">
+    <h4>エラー</h4>
+    <p>アクセスキーが間違っています</p>
+  </div>
+  <div class="modal-footer">
+    <button id="errorOkButton" class="btn waves-effect waves-light">OK</button>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.modal');
-  var instances = M.Modal.init(elems, {dismissible: false});
+  // ページロード時にモーダルを表示
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {dismissible: false});
+    var accessKeyInstance = M.Modal.getInstance(document.getElementById('accessKeyModal'));
+    accessKeyInstance.open();
+  });
 
-  // ページロード後にアクセスキーダイアログを表示
-  var accessDialog = document.getElementById("accessDialog");
-  var instance = M.Modal.getInstance(accessDialog);
-  instance.open();
-});
-
-function showAccessButton() {
-  var inputField = document.getElementById("inputField");
-  var accessButton = document.getElementById("accessButton");
-  if (inputField.value.trim() !== "") {
-    accessButton.style.display = "block";
-  } else {
-    accessButton.style.display = "none";
+  // アクセスボタン表示制御
+  function showAccessButton() {
+    var inputField = document.getElementById("inputField");
+    var accessButton = document.getElementById("accessButton");
+    if (inputField.value.trim() !== "") {
+      accessButton.style.display = "block";
+    } else {
+      accessButton.style.display = "none";
+    }
   }
-}
 
-function checkAccessKey() {
-  var accessKeyInput = document.getElementById("accessKeyInput").value;
-  var encryptedAccessKey = encryptAccessKey(accessKeyInput);
-  var correctEncryptedKey = "98b5663ec6318b31e44d86c5b82c5079"; // "media2441pc" の暗号化された値
-  
-  if (encryptedAccessKey === correctEncryptedKey) {
-    var accessDialog = document.getElementById("accessDialog");
-    var instance = M.Modal.getInstance(accessDialog);
-    instance.close();
-  } else {
-    alert("アクセスキーが正しくありません。もう一度お試しください。");
+  // OKボタン押下時の処理
+  document.getElementById('modalOkButton').addEventListener('click', function() {
+    var accessKey = document.getElementById('accessKeyInput').value;
+    if (accessKey === 'media2441pc') {
+      var accessKeyInstance = M.Modal.getInstance(document.getElementById('accessKeyModal'));
+      accessKeyInstance.close();
+    } else {
+      var errorInstance = M.Modal.getInstance(document.getElementById('errorModal'));
+      errorInstance.open();
+    }
+  });
+
+  // エラーモーダルのOKボタン押下時の処理
+  document.getElementById('errorOkButton').addEventListener('click', function() {
+    var errorInstance = M.Modal.getInstance(document.getElementById('errorModal'));
+    errorInstance.close();
+  });
+
+  // リダイレクト処理
+  function redirect() {
+    var inputField = document.getElementById("inputField").value;
+    var url = 'https://pcmanagerplus.github.io/media.web/' + inputField;
+    window.location.href = url;
   }
-}
-
-function encryptAccessKey(accessKey) {
-  // MD5ハッシュ化関数
-  return CryptoJS.MD5(accessKey).toString();
-}
 </script>
-
-<!-- CryptoJSライブラリの読み込み -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 
 </body>
 </html>
