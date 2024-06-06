@@ -82,14 +82,23 @@
         <p id="play-er">ーー理由ーー</p>
         <p id="play-er" class="reason">編集者によりこのページへのアクセスが制限されています。</p>
         <div class="link">
-            <a href="https://www.google.com" id="play-ar">Googleに戻る</a>
+            <button id="play-ar">Googleに戻る</button>
         </div>
     </div>
     <audio id="alert-er" src="https://pcmanagerplus.github.io/media.web/er.mp3" preload="auto"></audio>
     <audio id="alert-ar" src="https://pcmanagerplus.github.io/media.web/ar.mp3" preload="auto"></audio>
     <script>
+        document.getElementById('play-ar').addEventListener('click', function() {
+            var audio = document.getElementById('alert-ar');
+            audio.currentTime = 0; // 再生位置を最初に戻す
+            audio.play().catch(function(error) {
+                console.error('再生に失敗しました:', error);
+            });
+        });
+
         window.addEventListener('load', function() {
             var audio = document.getElementById('alert-er');
+            document.getElementById('play-ar').disabled = false;
             audio.play().catch(function(error) {
                 console.error('再生に失敗しました:', error);
             });
