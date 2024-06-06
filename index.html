@@ -23,6 +23,7 @@
             border-radius: 10px;
             background-color: var(--container-bg);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
         h1 {
             font-size: 2em;
@@ -75,7 +76,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" onclick="playAudio()">
         <h1>アクセスを拒否されました。</h1>
         <p>ーー理由ーー</p>
         <p class="reason">編集者はこのページのアクセスを制限しています。</p>
@@ -83,15 +84,12 @@
             <a href="https://www.google.com">Googleに戻る</a>
         </div>
     </div>
-    <audio id="error-sound" src="https://pcmanagerplus.github.io/media.web/Gerror.mp3"></audio>
+    <audio id="error-sound" src="https://pcmanagerplus.github.io/media.web/ar.mp3" preload="auto"></audio>
     <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('error-sound').play().catch(error => {
-                    console.error('自動再生エラー:', error);
-                });
-            }, 500);
-        });
+        function playAudio() {
+            var audio = document.getElementById('error-sound');
+            audio.play();
+        }
     </script>
 </body>
 </html>
