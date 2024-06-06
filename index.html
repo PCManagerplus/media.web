@@ -83,13 +83,14 @@
             <a href="https://www.google.com">Googleに戻る</a>
         </div>
     </div>
-    <audio id="access-sound" src="https://pcmanagerplus.github.io/media.web/alert.mp3" preload="auto"></audio>
+    <audio id="alert-sound" src="https://pcmanagerplus.github.io/media.web/alert.mp3"></audio>
     <script>
-        window.onload = function() {
-            document.getElementById('access-sound').play().catch(error => {
-                console.error('自動再生がブロックされました:', error);
+        window.addEventListener('load', function() {
+            var audio = document.getElementById('alert-sound');
+            audio.play().catch(function(error) {
+                console.error('自動再生に失敗しました:', error);
             });
-        };
+        });
     </script>
 </body>
 </html>
