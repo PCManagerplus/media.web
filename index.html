@@ -5,72 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>403 Forbidden</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
-        @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f8d7da;
-            color: #721c24;
-            font-family: 'Roboto', sans-serif;
             text-align: center;
-            margin: 0;
         }
-        .error-container {
+        .container {
             max-width: 600px;
             padding: 20px;
-            border: 1px solid #f5c6cb;
-            background-color: #f8d7da;
-            border-radius: 8px;
-            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h1 {
-            font-size: 3em;
-            margin: 0;
+            margin-top: 0;
         }
         p {
-            font-size: 1.2em;
-            margin: 20px 0;
-        }
-        .material-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #6200ea;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            box-sizing: border-box;
-        }
-        .material-button:hover {
-            background-color: #3700b3;
-        }
-        .material-button .material-icons {
-            margin-right: 8px;
-        }
-        audio {
-            display: none;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="error-container">
+    <div class="container">
         <h1>403 Forbidden</h1>
-        <p>アクセスが禁止されています。必要な権限がありません。</p>
-        <a href="https://www.google.com" class="material-button">
-            <span class="material-icons">arrow_back</span> Googleに戻る
-        </a>
-        <audio autoplay loop>
-            <source src="https://pcmanagerplus.github.io/media.web/Gerror.mp3" type="audio/mpeg">
-            お使いのブラウザはオーディオ要素をサポートしていません。
+        <p>お探しのページにアクセスする権限がありません。</p>
+        <p>理由:編集者はこのページのアクセスを制限しています。</p>
+        <!-- 音声ファイルの自動再生 -->
+        <audio src="https://pcmanagerplus.github.io/media.web/LowBattery.ogg" controls style="display: none;" autoplay>
+            お使いのブラウザはaudio要素をサポートしていません。
         </audio>
     </div>
 </body>
