@@ -28,7 +28,7 @@
 <body>
 
 <div id="videoContainer">
-    <video id="videoPlayer" controls autoplay muted></video>
+    <video id="videoPlayer" controls autoplay></video>
 </div>
 
 <script>
@@ -38,14 +38,18 @@
         return urlParams.get('link');
     }
 
-    // 動画リンクを取得して自動再生
+    // 動画リンクを取得して再生
     const videoPlayer = document.getElementById('videoPlayer');
     const videoLink = getVideoLinkFromURL();
 
     if (videoLink) {
         videoPlayer.src = videoLink;
         videoPlayer.load();
-        videoPlayer.play();  // 手動でplay()を呼び出すことで自動再生を強制
+
+        // 自動再生を試みる
+        videoPlayer.play().catch(error => {
+            console.log('自動再生がブロックされました:', error);
+        });
     } else {
         alert('動画リンクが見つかりません');
     }
