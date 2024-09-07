@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動画リンクプレーヤー</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        #videoContainer {
+            width: 100%;
+            height: 100%;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+<div id="videoContainer">
+    <video id="videoPlayer" controls autoplay muted></video>
+</div>
+
+<script>
+    // URLパラメータからリンクを取得する関数
+    function getVideoLinkFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('link');
+    }
+
+    // 動画リンクを取得して自動再生
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoLink = getVideoLinkFromURL();
+
+    if (videoLink) {
+        videoPlayer.src = videoLink;
+        videoPlayer.load();
+        videoPlayer.play();  // 手動でplay()を呼び出すことで自動再生を強制
+    } else {
+        alert('動画リンクが見つかりません');
+    }
+</script>
+
+</body>
+</html>
